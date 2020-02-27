@@ -17,7 +17,7 @@ import javax.jms.Message;
 public class MessageListener {
     @JmsListener(destination = JmsConfig.MY_QUEUE)
     public void listen(@Payload HelloWorldMessage helloMessage, @Headers MessageHeaders messageHeaders, Message message) {
-        log.info("i recieved a message");
-        log.info(helloMessage.toString());
+        log.info("recieved ::"+helloMessage.toString());
+
     }
 }

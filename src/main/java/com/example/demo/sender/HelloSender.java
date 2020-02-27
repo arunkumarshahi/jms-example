@@ -14,6 +14,7 @@ import java.util.UUID;
 @Component
 @Accessors(chain = true)
 public class HelloSender {
+    public static int count = 0;
     private  final JmsTemplate jmsTemplate;
 
     @Scheduled(fixedRate = 2000)
@@ -24,12 +25,14 @@ public class HelloSender {
         HelloWorldMessage message = new HelloWorldMessage();
 
         message.setId(UUID.randomUUID());
-                message.setMessage("Hello World!");
+                message.setMessage("Hello World!"+count++);
 
 
         jmsTemplate.convertAndSend(JmsConfig.MY_QUEUE, message);
 
         System.out.println("Message Sent!");
+
+        //        throw new RuntimeException("exception occured");
 
     }
 }
